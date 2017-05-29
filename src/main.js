@@ -5,9 +5,11 @@ import App from './App'
 import router from './router'
 import BootstrapVue from 'bootstrap-vue'
 import Vuex from 'vuex'
+import VueCharts from 'vue-charts'
 
 Vue.use(BootstrapVue)
 Vue.use(Vuex)
+Vue.use(VueCharts)
 
 Vue.config.productionTip = false
 
