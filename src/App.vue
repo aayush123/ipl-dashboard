@@ -2,18 +2,35 @@
   <div id="app">
     <!-- <Header></Header> -->
     <SideBar></SideBar>
-    <router-view></router-view>
+    <div class="" id= "main">
+      <router-view></router-view>
+    </div>
     <!-- <Footer></Footer> -->
   </div>
 </template>
 
 <script>
-// import Header from './components/Header'
-// import Footer from './components/Footer'
+// import $ from 'jquery'
 import SideBar from './components/SideBar'
 export default {
   name: 'app',
-  components: { SideBar }
+  components: { SideBar },
+  // created: function () {
+  //   $.ajax({
+  //     url: '/static/test.json',
+  //     success: data => {
+  //       console.log('from success')
+  //       this.$router.push('/trivia')
+  //     },
+  //     error: error => {
+  //       console.log(error)
+  //       this.$router.push('/error')
+  //     }
+  //   })
+  // }
+  created: function () {
+    this.$router.replace('/loading')
+  }
 }
 </script>
 

@@ -5,12 +5,17 @@
     <div class="menu-list">
         <ul id="menu-content" class="menu-content collapse out">
             <li>
-                <a href="#">
-                    <i class="fa fa-dashboard fa-lg"></i> Dashboard
-                </a>
+                <router-link to="/stats">
+                    <i class="fa fa-dashboard fa-lg"></i> Statistics
+                </router-link>
             </li>
-            <li data-toggle="collapse" data-target="#products" class="collapsed active">
-                <a href="#"><i class="fa fa-gift fa-lg"></i> UI Elements <span class="arrow"></span></a>
+            <li>
+                <router-link to="/trivia">
+                    <i class="fa fa-home fa-lg"></i> Trivia
+                </router-link>
+            </li>
+            <!-- <li data-toggle="collapse" data-target="#products" class="collapsed active">
+                <i class="fa fa-gift fa-lg"></i> UI Elements <span class="arrow"></span></a>
             </li>
             <ul class="sub-menu collapse" id="products">
                 <li class="active"><a href="#">CSS3 Animation</a></li>
@@ -51,7 +56,7 @@
                 <a href="#">
                     <i class="fa fa-users fa-lg"></i> Users
                 </a>
-            </li>
+            </li> -->
         </ul>
     </div>
   </div>

@@ -1,0 +1,4 @@
+{
+  "hello": "world",
+  "how to read this file": "type localhost:8080/static/test.json in browser. use format to send httprequests to server and read csv files. call csv files in actions, update data using mutations... Lets see... router is accessible in components as this.$router.push etc"
+}

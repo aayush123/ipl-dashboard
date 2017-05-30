@@ -1,5 +1,5 @@
 <template lang="html">
-  <div class="" id= "main">
+  <div class="col-md-6 col-md-offset-1">
     <vue-chart
             chart-type="BarChart"
             :columns="columns"
