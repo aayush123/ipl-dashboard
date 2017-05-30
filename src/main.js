@@ -4,12 +4,14 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import BootstrapVue from 'bootstrap-vue'
-import Vuex from 'vuex'
 import VueCharts from 'vue-charts'
-
-Vue.use(BootstrapVue)
+// import Store from './store/index'
+import Vuex from 'vuex'
 Vue.use(Vuex)
+Vue.use(BootstrapVue)
 Vue.use(VueCharts)
+import storePlugin from '@/store/storePlugin'
+Vue.use(storePlugin)
 
 Vue.config.productionTip = false
 

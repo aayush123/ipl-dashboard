@@ -6,13 +6,16 @@
             :rows="rows"
             :options="options"
         ></vue-chart>
+        <span>{{test}}</span>
   </div>
 </template>
 
 <script>
+// import { mapGetters } from 'vuex'
 export default {
   data: function () {
     return {
+      test: this.$Store.getters.basicGetter,
       columns: [{
         'type': 'string',
         'label': 'Year'
