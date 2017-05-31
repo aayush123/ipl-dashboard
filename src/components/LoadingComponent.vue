@@ -16,11 +16,24 @@ export default {
     }
   },
   mounted: function () {
-    console.log(typeof localStorage)
+    // console.log(typeof localStorage)
     $.ajax({
-      url: '/static/test.json',
+      url: '/static/matches.csv',
       success: data => {
-        DataHelper.parseMatchesData(data)
+        let matchesData = DataHelper.parseMatchesData(data)
+        console.log(matchesData)
+        // this.$router.push('/trivia')
+      },
+      error: error => {
+        console.log(error)
+        this.$router.push('/error')
+      }
+    })
+    $.ajax({
+      url: '/static/deliveries.csv',
+      success: data => {
+        let deliveriesData = DataHelper.parseDeliveriesData(data)
+        console.log(deliveriesData)
         this.$router.push('/trivia')
       },
       error: error => {

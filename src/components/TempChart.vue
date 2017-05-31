@@ -1,7 +1,7 @@
 <template lang="html">
   <div class="col-md-6 col-md-offset-1">
     <vue-chart
-            chart-type="BarChart"
+            chart-type="PieChart"
             :columns="columns"
             :rows="rows"
             :options="options"
@@ -34,19 +34,19 @@ export default {
       ],
       options: {
         title: 'Company Performance',
-        hAxis: {
+        vAxis: {
           title: 'Year',
           minValue: '2004',
           maxValue: '2007'
         },
-        vAxis: {
+        hAxis: {
           title: '',
           minValue: 300,
           maxValue: 1200
         },
         width: 900,
-        height: 500,
-        curveType: 'function'
+        height: 500
+        // curveType: 'function'
       }
     }
   }
