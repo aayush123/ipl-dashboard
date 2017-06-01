@@ -1,9 +1,14 @@
 <template lang="html">
   <div class="container">
-    <div class="page-header">
-      <h1>IPL Statistics</h1>
+    <div class="row">
+      <div class="page-header">
+        <center><h1>IPL Statistics</h1></center>
+      </div>
     </div>
     <div class="row">
+      <div class="page-header">
+        <h3>Wins/Losses Statistics of All Teams</h3>
+      </div>
       <div class="col-md-10 col-md-offset-1">
         <vue-chart
           id="teamWinLossGraph"
@@ -16,6 +21,9 @@
     </div>
     <hr>
     <div class="row">
+      <div class="page-header">
+        <h3>Top 10 Wicket Takers</h3>
+      </div>
       <div class="col-md-10 col-md-offset-1">
         <vue-chart
           id="wicketDistributionChart"
@@ -28,6 +36,9 @@
     </div>
     <hr>
     <div class="row">
+      <div class="page-header">
+        <h3>Top 10 Six Hitters</h3>
+      </div>
       <div class="col-md-10 col-md-offset-1">
         <vue-chart
           id="mostSixBarChart"
@@ -38,6 +49,7 @@
         ></vue-chart>
       </div>
     </div>
+    <hr>
   </div>
 </template>
 

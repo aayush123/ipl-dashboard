@@ -20,13 +20,16 @@ const state = {
     ],
     rows: [],
     options: {
-      title: 'Number of Sixes per Player',
+      // title: 'Number of Sixes per Player',
       height: '400',
       vAxis: {
         title: 'Number of Sixes'
       },
       hAxis: {
         title: 'Player Name'
+      },
+      series: {
+        0: { color: '#d67107' }
       }
     }
   },
@@ -44,13 +47,16 @@ const state = {
     ],
     rows: [],
     options: {
-      title: 'Number of Wickets per Player',
+      // title: 'Number of Wickets per Player',
       height: '400',
       vAxis: {
         title: 'Player Name'
       },
       hAxis: {
         title: 'Number of Wickets'
+      },
+      series: {
+        0: { color: '#038c80' }
       }
     }
   },
@@ -74,14 +80,17 @@ const state = {
     ],
     rows: [],
     options: {
-      title: 'Team Win/Loss Statistics',
-      isStacked: true,
+      // title: 'Team Win/Loss Statistics',
+      isStacked: 'true',
       height: '500',
       vAxis: {
         title: 'Count of Wins/Losses'
       },
       hAxis: {
         title: 'Team Name'
+      },
+      series: {
+        0: { color: '#1d8804' }
       }
     }
   },
