@@ -1,9 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Temp from '@/components/TempChart'
-import CounterCompTest from '@/components/CounterCompTest'
+import StatisticsComponent from '@/components/StatisticsComponent'
 import LoadingComponent from '@/components/LoadingComponent'
 import ErrorComponent from '@/components/ErrorComponent'
+import TriviaComponent from '@/components/TriviaComponent'
 
 Vue.use(Router)
 
@@ -12,12 +12,12 @@ export default new Router({
     {
       path: '/trivia',
       name: 'Trivia',
-      component: Temp
+      component: TriviaComponent
     },
     {
       path: '/stats',
       name: 'Statistics',
-      component: CounterCompTest
+      component: StatisticsComponent
     },
     {
       path: '/loading',

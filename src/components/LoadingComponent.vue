@@ -16,29 +16,44 @@ export default {
     }
   },
   mounted: function () {
-    // console.log(typeof localStorage)
+    let localCacheAvailable = false
+    if (localStorage.getItem('iplState') !== null) {
+      localCacheAvailable = true
+      console.log('bypassing loading screen as local cache available')
+      this.$Store.commit('setStateFromCache', JSON.parse(localStorage.getItem('iplState')))
+      this.$router.push('/trivia')
+    }
     $.ajax({
       url: '/static/matches.csv',
       success: data => {
-        let matchesData = DataHelper.parseMatchesData(data)
-        console.log(matchesData)
-        // this.$router.push('/trivia')
+        this.$Store.commit('updateMatchesData', DataHelper.parseMatchesData(data))
       },
       error: error => {
         console.log(error)
-        this.$router.push('/error')
+        if (!localCacheAvailable) {
+          this.$router.push('/error')
+        } else {
+          this.$router.push('/trivia')
+        }
       }
     })
     $.ajax({
       url: '/static/deliveries.csv',
       success: data => {
-        let deliveriesData = DataHelper.parseDeliveriesData(data)
-        console.log(deliveriesData)
-        this.$router.push('/trivia')
+        this.$Store.commit('updateDeliveriesData', DataHelper.parseDeliveriesData(data))
+        if (!localCacheAvailable) {
+          this.$router.push('/trivia')
+        }
+        console.log('updating cached state')
+        localStorage.setItem('iplState', JSON.stringify(this.$Store.getters.compeleteState))
       },
       error: error => {
         console.log(error)
-        this.$router.push('/error')
+        if (!localCacheAvailable) {
+          this.$router.push('/error')
+        } else {
+          this.$router.push('/trivia')
+        }
       }
     })
   }
