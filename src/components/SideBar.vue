@@ -25,5 +25,7 @@ export default {
 </script>
 
 <style lang="css">
-
+.nav-side-menu {
+  z-index: 999;
+}
 </style>

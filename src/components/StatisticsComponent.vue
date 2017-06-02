@@ -12,11 +12,13 @@
       <div class="col-md-10 col-md-offset-1">
         <vue-chart
           id="teamWinLossGraph"
+          :chart-events="teamWinLossGraphData.chartEvents"
           :chart-type="teamWinLossGraphData.type"
           :columns="teamWinLossGraphData.columns"
           :rows="teamWinLossGraphData.rows"
           :options="teamWinLossGraphData.options"
         ></vue-chart>
+        <br><strong>Click on a team's bar to see season wise performance.</strong>
       </div>
     </div>
     <hr>
@@ -50,11 +52,19 @@
       </div>
     </div>
     <hr>
+    <LineChartModal v-if='modalDisplayStatus' @close='modalClose'></LineChartModal>
   </div>
 </template>
 
 <script>
+import LineChartModal from '@/components/LineChartModalComponent'
 export default {
+  methods: {
+    modalClose: function () {
+      this.$Store.commit('toggleModal')
+    }
+  },
+  components: { LineChartModal },
   computed: {
     teamWinLossGraphData: function () {
       return this.$Store.getters.chartGetter.teamWinLossGraphData
@@ -64,6 +74,9 @@ export default {
     },
     mostSixBarChartData: function () {
       return this.$Store.getters.chartGetter.mostSixBarChartData
+    },
+    modalDisplayStatus: function () {
+      return this.$Store.getters.modalDisplayStatusGetter
     }
   }
 }

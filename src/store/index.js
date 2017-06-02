@@ -1,10 +1,12 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+// import $ from 'jquery'
 
 Vue.use(Vuex)
 
 const state = {
   // Data from deliveries.csv
+  modalDisplayStatus: false,
   superOverMaxRuns: 0,
   mostSixBarChartData: {
     type: 'ColumnChart',
@@ -62,8 +64,28 @@ const state = {
   },
 
   // Data from Matches.csv
+  selectedTeamName: '',
+  seasonWiseTeamChartRows: {},
   teamWinLossGraphData: {
     type: 'ColumnChart',
+    chartEvents: {
+      // 'select': function () {
+      //   console.log(getSelection())
+      // },
+      'click': (target) => {
+        let targetType = target.targetID.split('#')[0]
+        let teamName = ''
+        if (targetType === 'bar') {
+          let teamID = target.targetID.split('#')[2]
+          teamName = this.a.getters.chartGetter.teamWinLossGraphData.rows[teamID][0]
+          // console.log(teamName)
+          this.a.commit('updateSelectedTeam', teamName)
+          this.a.commit('toggleModal')
+        }
+        // console.log(target)
+        // this.a.commit('testMuta')
+      }
+    },
     columns: [
       {
         'type': 'string',
@@ -116,9 +138,19 @@ const mutations = {
     state.superOverMatchCount = payload.superOverMatchCount
     state.mostPlayedAtVenue = payload.mostPlayedAtVenue
     state.mostConsistentPlayerOfMatch = payload.mostConsistentPlayerOfMatch
+    state.seasonWiseTeamChartRows = payload.seasonWiseTeamChartRows
   },
   setStateFromCache (state, payload) {
     state = payload
+  },
+  toggleModal (state) {
+    state.modalDisplayStatus = !state.modalDisplayStatus
+  },
+  updateSeasonData (state, payload) {
+
+  },
+  updateSelectedTeam (state, payload) {
+    state.selectedTeamName = payload
   }
 }
 
@@ -128,7 +160,8 @@ const getters = {
     return {
       teamWinLossGraphData: state.teamWinLossGraphData,
       wicketDistributionChartData: state.wicketDistributionChartData,
-      mostSixBarChartData: state.mostSixBarChartData
+      mostSixBarChartData: state.mostSixBarChartData,
+      seasonWiseTeamChartRows: state.seasonWiseTeamChartRows
     }
   },
   triviaGetter: (state) => {
@@ -141,7 +174,9 @@ const getters = {
       mostPlayedAtVenue: state.mostPlayedAtVenue,
       mostConsistentPlayerOfMatch: state.mostConsistentPlayerOfMatch
     }
-  }
+  },
+  modalDisplayStatusGetter: state => state.modalDisplayStatus,
+  selectedTeamNameGetter: state => state.selectedTeamName
 }
 
 export default new Vuex.Store({

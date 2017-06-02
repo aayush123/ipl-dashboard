@@ -1,6 +1,7 @@
 // Function to parse Matches.csv data.
 const parseMatchesData = function (rawData) {
   let returnDataObject = {
+    seasonWiseTeamChartRows: {},
     teamWinLossGraphData: {
       rows: []
     },
@@ -11,6 +12,7 @@ const parseMatchesData = function (rawData) {
     mostPlayedAtVenue: '',
     mostConsistentPlayerOfMatch: ''
   }
+  let seasonWiseTeamPerformance = {}
   let lossCountObj = {}
   let victoryCountObj = {}
   let matchInVenueCountObj = {}
@@ -61,7 +63,9 @@ const parseMatchesData = function (rawData) {
     } else {
       UpcrementValueInObj(currentRowArr[4], 1, lossCountObj)
     }
+    UpdateMatchResultForSeason(currentRowArr[1], currentRowArr[4], currentRowArr[5], currentRowArr[10], seasonWiseTeamPerformance)
   }
+  returnDataObject.seasonWiseTeamChartRows = ParseSeasonWiseData(seasonWiseTeamPerformance)
   returnDataObject.tossBattingWinProb = round(tossProbObj.batFirstWinCount / tossProbObj.totalMatches, 2)
   returnDataObject.tossFieldingWinProb = round(tossProbObj.fieldFirstWinCount / tossProbObj.totalMatches, 2)
   returnDataObject.mostVictoriousTeam = findObjKeyWithMaxValue(victoryCountObj).keyNameWithMax
@@ -123,6 +127,38 @@ const parseDeliveriesData = function (rawData) {
 }
 
 // Helper Functions
+
+// Function to parse aggregated season wise performance and convert it to data format for google chart.
+function ParseSeasonWiseData (seasonWiseTeamPerformance) {
+  let returnObj = {}
+  Object.getOwnPropertyNames(seasonWiseTeamPerformance).map(function (eachTeamName, idx) {
+    returnObj[eachTeamName] = []
+    Object.getOwnPropertyNames(seasonWiseTeamPerformance[eachTeamName]).map(function (eachSeason, idx) {
+      returnObj[eachTeamName].push([eachSeason, round(seasonWiseTeamPerformance[eachTeamName][eachSeason].wins / seasonWiseTeamPerformance[eachTeamName][eachSeason].total, 2) * 100])
+    })
+  })
+  return returnObj
+}
+
+// Function to update match result for both participating teams in seasonWise data.
+function UpdateMatchResultForSeason (season, team1, team2, winner, parentObj) {
+  if (!(team1 in parentObj)) {
+    parentObj[team1] = {}
+  }
+  if (!(team2 in parentObj)) {
+    parentObj[team2] = {}
+  }
+  if (!(season in parentObj[team1])) {
+    parentObj[team1][season] = { 'total': 0, 'wins': 0 }
+  }
+  if (!(season in parentObj[team2])) {
+    parentObj[team2][season] = { 'total': 0, 'wins': 0 }
+  }
+  UpcrementValueInObj('total', 1, parentObj[team1][season])
+  UpcrementValueInObj('total', 1, parentObj[team2][season])
+  UpcrementValueInObj('wins', 1, parentObj[winner][season])
+}
+
 // Function to check if value belongs in top 10 and then insert only. Uses "worthy merge sort"
 function InsertNestedArrInTopTen (newElem, parentArray) {
   let newArr = []

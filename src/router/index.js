@@ -4,6 +4,7 @@ import StatisticsComponent from '@/components/StatisticsComponent'
 import LoadingComponent from '@/components/LoadingComponent'
 import ErrorComponent from '@/components/ErrorComponent'
 import TriviaComponent from '@/components/TriviaComponent'
+import PageNotFoundComponent from '@/components/PageNotFoundComponent'
 
 Vue.use(Router)
 
@@ -32,6 +33,10 @@ export default new Router({
     {
       path: '/',
       redirect: '/loading'
+    },
+    {
+      path: '*',
+      component: PageNotFoundComponent
     }
   ]
 })
