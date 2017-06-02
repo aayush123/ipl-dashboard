@@ -10,6 +10,11 @@
         <h3>Wins/Losses Statistics of All Teams</h3>
       </div>
       <div class="col-md-10 col-md-offset-1">
+        <div class="panel panel-info">
+          <div class="panel-body">
+            <i class="fa fa-info-circle fa-2x" style="vertical-align: middle; padding-right:5px" aria-hidden="true"></i><span style="margin-left: 10px; vertical-align: middle">Click on a team's bar to see season-wise performance.</span>
+          </div>
+        </div>
         <vue-chart
           id="teamWinLossGraph"
           :chart-events="teamWinLossGraphData.chartEvents"
@@ -18,7 +23,6 @@
           :rows="teamWinLossGraphData.rows"
           :options="teamWinLossGraphData.options"
         ></vue-chart>
-        <br><strong>Click on a team's bar to see season-wise performance.</strong>
       </div>
     </div>
     <hr>
