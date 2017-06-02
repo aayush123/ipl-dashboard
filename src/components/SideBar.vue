@@ -4,16 +4,16 @@
     <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
     <div class="menu-list">
         <ul id="menu-content" class="menu-content collapse out">
-            <li>
-              <router-link to="/trivia">
-                <i class="fa fa-home fa-lg"></i> Trivia
-              </router-link>
-            </li>
-            <li>
-                <router-link to="/stats">
-                    <i class="fa fa-dashboard fa-lg"></i> Statistics
-                </router-link>
-            </li>
+          <li>
+            <router-link to="/stats">
+              <i class="fa fa-dashboard fa-lg"></i> Statistics
+            </router-link>
+          </li>
+          <li>
+            <router-link to="/trivia">
+              <i class="fa fa-home fa-lg"></i> Trivia
+            </router-link>
+          </li>
         </ul>
     </div>
   </div>

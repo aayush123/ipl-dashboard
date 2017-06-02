@@ -10,7 +10,7 @@ const parseMatchesData = function (rawData) {
     tossFieldingWinProb: 0,
     superOverMatchCount: 0,
     mostPlayedAtVenue: '',
-    mostConsistentPlayerOfMatch: ''
+    mostConsistentPlayerOfMatch: {name: '', val: 0}
   }
   let seasonWiseTeamPerformance = {}
   let lossCountObj = {}
@@ -68,7 +68,8 @@ const parseMatchesData = function (rawData) {
   returnDataObject.tossFieldingWinProb = round(tossProbObj.fieldFirstWinCount / tossProbObj.totalMatches, 2)
   returnDataObject.mostVictoriousTeam = findObjKeyWithMaxValue(victoryCountObj).keyNameWithMax
   returnDataObject.mostPlayedAtVenue = findObjKeyWithMaxValue(matchInVenueCountObj).keyNameWithMax
-  returnDataObject.mostConsistentPlayerOfMatch = findObjKeyWithMaxValue(playerOfMatchCountObj).keyNameWithMax
+  let mostConsistentPlayerOfMatchData = findObjKeyWithMaxValue(playerOfMatchCountObj)
+  returnDataObject.mostConsistentPlayerOfMatch = {name: mostConsistentPlayerOfMatchData.keyNameWithMax, val: mostConsistentPlayerOfMatchData.maxVal}
   // Parse victoryCountObj and lossCountObj to form chart data
   Object.getOwnPropertyNames(victoryCountObj).map(function (eachTeamName, idx) {
     returnDataObject.teamWinLossGraphData.rows.push([eachTeamName, victoryCountObj[eachTeamName], lossCountObj[eachTeamName]])
@@ -85,11 +86,17 @@ const parseDeliveriesData = function (rawData) {
     },
     wicketDistributionChartData: {
       rows: []
-    }
+    },
+    maxCatchesPlayer: {name: '', val: 0},
+    maxRunoutsPlayer: {name: '', val: 0},
+    maxRunsPlayer: {name: '', val: 0}
   }
   let superOverMatches = {}
   let sixesData = {}
   let wicketsData = {}
+  let catchesData = {}
+  let runOutData = {}
+  let runsData = {}
   // Parse each line of data
   let dataLines = rawData.split('\n')
   dataLines.shift()
@@ -108,11 +115,20 @@ const parseDeliveriesData = function (rawData) {
     if (currentRowArr[9] === '1') {
       UpcrementValueInObj(currentRowArr[0], +(currentRowArr[17]), superOverMatches)
     }
+    // Increment catches count
+    if (currentRowArr[19] === 'caught') {
+      UpcrementValueInObj(currentRowArr[20], 1, catchesData)
+    }
+    // Increment runouts count
+    if (currentRowArr[19] === 'run out') {
+      UpcrementValueInObj(currentRowArr[20], 1, runOutData)
+    }
+    // Increment batsman runs
+    UpcrementValueInObj(currentRowArr[6], +(currentRowArr[15]), runsData)
   }
   // Update max super over runs in returnDataObject
   returnDataObject.superOverMaxRuns = findObjKeyWithMaxValue(superOverMatches).maxVal
   // Parse the aggregated sixesData and form data object for google chart.
-  // Logic returns array which is disorderd. check values...
   Object.getOwnPropertyNames(sixesData).map(function (eachKey, idx) {
     returnDataObject.mostSixBarChartData.rows = InsertNestedArrInTopTen([eachKey, sixesData[eachKey]], returnDataObject.mostSixBarChartData.rows)
   })
@@ -120,6 +136,18 @@ const parseDeliveriesData = function (rawData) {
   Object.getOwnPropertyNames(wicketsData).map(function (eachKey, idx) {
     returnDataObject.wicketDistributionChartData.rows = InsertNestedArrInTopTen([eachKey, wicketsData[eachKey]], returnDataObject.wicketDistributionChartData.rows)
   })
+  // Update max catches data in returnDataObject
+  let maxCatchesPlayerData = findObjKeyWithMaxValue(catchesData)
+  returnDataObject.maxCatchesPlayer.name = maxCatchesPlayerData.keyNameWithMax
+  returnDataObject.maxCatchesPlayer.val = maxCatchesPlayerData.maxVal
+  // Update max runouts data in returnDataObject
+  let maxRunoutsPlayerData = findObjKeyWithMaxValue(runOutData)
+  returnDataObject.maxRunoutsPlayer.name = maxRunoutsPlayerData.keyNameWithMax
+  returnDataObject.maxRunoutsPlayer.val = maxRunoutsPlayerData.maxVal
+  // Update max runs data in returnDataObject
+  let maxRunsPlayerData = findObjKeyWithMaxValue(runsData)
+  returnDataObject.maxRunsPlayer.name = maxRunsPlayerData.keyNameWithMax
+  returnDataObject.maxRunsPlayer.val = maxRunsPlayerData.maxVal
   return returnDataObject
 }
 

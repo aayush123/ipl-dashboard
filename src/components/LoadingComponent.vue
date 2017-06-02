@@ -21,7 +21,7 @@ export default {
       localCacheAvailable = true
       console.log('bypassing loading screen as local cache available')
       this.$Store.commit('setStateFromCache', JSON.parse(localStorage.getItem('iplState')))
-      this.$router.push('/trivia')
+      this.$router.push('/stats')
     }
     $.ajax({
       url: '/static/matches.csv',

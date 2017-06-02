@@ -6,6 +6,9 @@ Vue.use(Vuex)
 
 const state = {
   // Data from deliveries.csv
+  maxCatchesPlayer: { name: '', val: 0 },
+  maxRunoutsPlayer: { name: '', val: 0 },
+  maxRunsPlayer: { name: '', val: 0 },
   modalDisplayStatus: false,
   superOverMaxRuns: 0,
   mostSixBarChartData: {
@@ -121,7 +124,7 @@ const state = {
   tossFieldingWinProb: 0,
   superOverMatchCount: 0,
   mostPlayedAtVenue: '',
-  mostConsistentPlayerOfMatch: ''
+  mostConsistentPlayerOfMatch: {name: '', val: 0}
 }
 
 const mutations = {
@@ -129,6 +132,9 @@ const mutations = {
     state.superOverMaxRuns = payload.superOverMaxRuns
     state.mostSixBarChartData.rows = payload.mostSixBarChartData.rows
     state.wicketDistributionChartData.rows = payload.wicketDistributionChartData.rows
+    state.maxCatchesPlayer = payload.maxCatchesPlayer
+    state.maxRunoutsPlayer = payload.maxRunoutsPlayer
+    state.maxRunsPlayer = payload.maxRunsPlayer
   },
   updateMatchesData (state, payload) {
     state.teamWinLossGraphData.rows = payload.teamWinLossGraphData.rows
@@ -172,7 +178,10 @@ const getters = {
       tossFieldingWinProb: state.tossFieldingWinProb,
       superOverMatchCount: state.superOverMatchCount,
       mostPlayedAtVenue: state.mostPlayedAtVenue,
-      mostConsistentPlayerOfMatch: state.mostConsistentPlayerOfMatch
+      mostConsistentPlayerOfMatch: state.mostConsistentPlayerOfMatch,
+      maxRunsPlayer: state.maxRunsPlayer,
+      maxCatchesPlayer: state.maxCatchesPlayer,
+      maxRunoutsPlayer: state.maxRunoutsPlayer
     }
   },
   modalDisplayStatusGetter: state => state.modalDisplayStatus,
