@@ -5,10 +5,10 @@
     <div class="menu-list">
         <ul id="menu-content" class="menu-content collapse out">
           <router-link to="/stats" tag="li" active-class="active">
-            <i class="fa fa-dashboard fa-lg"></i> Statistics
+            <i class="fa fa-bar-chart fa-lg"></i> Statistics
           </router-link>
           <router-link to="/trivia" tag="li" active-class="active">
-            <i class="fa fa-home fa-lg"></i> Trivia
+            <i class="fa fa-lightbulb-o fa-lg"></i> Trivia
           </router-link>
         </ul>
     </div>

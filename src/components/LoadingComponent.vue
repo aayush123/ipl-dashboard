@@ -33,7 +33,7 @@ export default {
         if (!localCacheAvailable) {
           this.$router.push('/error')
         } else {
-          this.$router.push('/trivia')
+          this.$router.push('/stats')
         }
       }
     })
@@ -42,7 +42,7 @@ export default {
       success: data => {
         this.$Store.commit('updateDeliveriesData', DataHelper.parseDeliveriesData(data))
         if (!localCacheAvailable) {
-          this.$router.push('/trivia')
+          this.$router.push('/stats')
         }
         console.log('updating cached state')
         localStorage.setItem('iplState', JSON.stringify(this.$Store.getters.compeleteState))
@@ -52,7 +52,7 @@ export default {
         if (!localCacheAvailable) {
           this.$router.push('/error')
         } else {
-          this.$router.push('/trivia')
+          this.$router.push('/stats')
         }
       }
     })

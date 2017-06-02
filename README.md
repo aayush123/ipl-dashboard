@@ -1,21 +1,31 @@
 # ipl-dashboard
+> A Vue.js Application
 
-> A Vue.js project
+### Libraries Used:
+  - Vue.js (JavaScript framework)
+  - Vuex (Store management)
+  - Vue-router (routing in the app)
+  - Bootstrap-vue (Styling)
+  - Vue-Charts (Vue plugin for Google charts)
+  - jQuery (async data read from static csv's)
 
-## Build Setup
+### Features (and Description)
 
-``` bash
-# install dependencies
-npm install
+  - App created in vue.js
+  - Optimized loading time
+  -- Data once loaded is stored in *localStorage* and is used to render pages on subsequent loads while it is being updated in the background.
+- App is mobile responsive to an extent
+-- Menu bar collapses to the top in mobile devices, charts are scaled based on screen size during loading.
+- App is offline usable
+-- Server is hit only when the app is first loading, after which, the state is kept on client's browser and components do not need to request data.
+-- App works even if connectivity is lost after or even during (if data from previous load was present in *localStorage*) the initial load of the application.
 
-# serve with hot reload at localhost:8080
-npm run dev
+### Installation
 
-# build for production with minification
-npm run build
-
-# build for production and view the bundle analyzer report
-npm run build --report
+```sh
+clone repo
+$ npm install
+$ npm start
 ```
 
-For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+To see the application, visit https://aayush123.github.io
