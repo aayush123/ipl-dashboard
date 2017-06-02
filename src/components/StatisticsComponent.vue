@@ -18,7 +18,7 @@
           :rows="teamWinLossGraphData.rows"
           :options="teamWinLossGraphData.options"
         ></vue-chart>
-        <br><strong>Click on a team's bar to see season wise performance.</strong>
+        <br><strong>Click on a team's bar to see season-wise performance.</strong>
       </div>
     </div>
     <hr>

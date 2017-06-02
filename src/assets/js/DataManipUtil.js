@@ -31,12 +31,10 @@ const parseMatchesData = function (rawData) {
     let currentRowArr = dataLines[i].split(',')
     // Increment count of matches in a venue
     UpcrementValueInObj(currentRowArr[14], 1, matchInVenueCountObj)
-
     // No further processing if no result of match
     if (currentRowArr[8] === 'no result') {
       continue
     }
-
     // Increment Player of Match count for this match's Player of Match
     UpcrementValueInObj(currentRowArr[13], 1, playerOfMatchCountObj)
     // Increment victory count of winning team
@@ -92,7 +90,6 @@ const parseDeliveriesData = function (rawData) {
   let superOverMatches = {}
   let sixesData = {}
   let wicketsData = {}
-
   // Parse each line of data
   let dataLines = rawData.split('\n')
   dataLines.shift()
