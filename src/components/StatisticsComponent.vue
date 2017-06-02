@@ -12,7 +12,10 @@
       <div class="col-md-10 col-md-offset-1">
         <div class="panel panel-info">
           <div class="panel-body">
-            <i class="fa fa-info-circle fa-2x" style="vertical-align: middle; padding-right:5px" aria-hidden="true"></i><span style="margin-left: 10px; vertical-align: middle">Click on a team's bar to see season-wise performance.</span>
+            <i class="fa fa-info-circle fa-2x" style="vertical-align: middle; padding-right:5px" aria-hidden="true"></i>
+            <span style="margin-left: 10px; vertical-align: middle">
+              Click on a team's bar to see season-wise performance.
+            </span>
           </div>
         </div>
         <vue-chart
@@ -87,4 +90,7 @@ export default {
 </script>
 
 <style lang="css">
+.page-header {
+  margin: 0px 10px;
+}
 </style>

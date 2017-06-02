@@ -28,10 +28,24 @@ const state = {
       // title: 'Number of Sixes per Player',
       height: '400',
       vAxis: {
-        title: 'Number of Sixes'
+        title: 'Number of Sixes',
+        titleTextStyle: {
+          color: '#000',
+          bold: true
+        },
+        textStyle: {
+          color: '#696a6d'
+        }
       },
       hAxis: {
-        title: 'Player Name'
+        title: 'Player Name',
+        titleTextStyle: {
+          color: '#000',
+          bold: true
+        },
+        textStyle: {
+          color: '#696a6d'
+        }
       },
       series: {
         0: { color: '#d67107' }
@@ -55,10 +69,24 @@ const state = {
       // title: 'Number of Wickets per Player',
       height: '400',
       vAxis: {
-        title: 'Player Name'
+        title: 'Player Name',
+        titleTextStyle: {
+          color: '#000',
+          bold: true
+        },
+        textStyle: {
+          color: '#696a6d'
+        }
       },
       hAxis: {
-        title: 'Number of Wickets'
+        title: 'Number of Wickets',
+        titleTextStyle: {
+          color: '#000',
+          bold: true
+        },
+        textStyle: {
+          color: '#696a6d'
+        }
       },
       series: {
         0: { color: '#038c80' }
@@ -109,10 +137,24 @@ const state = {
       isStacked: 'true',
       height: '500',
       vAxis: {
-        title: 'Count of Wins/Losses'
+        title: 'Count of Wins/Losses',
+        titleTextStyle: {
+          color: '#000',
+          bold: true
+        },
+        textStyle: {
+          color: '#696a6d'
+        }
       },
       hAxis: {
-        title: 'Team Name'
+        title: 'Team Name',
+        titleTextStyle: {
+          color: '#000',
+          bold: true
+        },
+        textStyle: {
+          color: '#696a6d'
+        }
       },
       series: {
         0: { color: '#1d8804' }
