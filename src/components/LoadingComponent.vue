@@ -8,7 +8,7 @@
 
 <script>
 import $ from 'jquery'
-import DataHelper from '../assets/js/DataManipUtil'
+import DataHelper from '../utility/DataManipUtil'
 export default {
   methods: {
     redirect: function () {
