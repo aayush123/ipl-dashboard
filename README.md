@@ -28,4 +28,4 @@ $ npm install
 $ npm start
 ```
 
-To see the application, visit https://aayush123.github.io
+To see the application, visit https://aayush123.github.io/ipl-dashboard
